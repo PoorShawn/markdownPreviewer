@@ -1,54 +1,55 @@
-# React + TypeScript + Vite
+# Markdown 预览器
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个基于 React 和 TypeScript 的 Markdown 实时预览工具，从零开始实现 Markdown 解析器。
 
-Currently, two official plugins are available:
+## 功能特点
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 实时预览 Markdown 文本
+- 支持的 Markdown 语法：
+  - 标题 (h1-h6)
+  - 段落
+  - 列表（有序和无序）
+  - 代码块
+  - 行内格式（粗体、斜体、行内代码）
+  - 水平线
 
-## Expanding the ESLint configuration
+## 技术栈
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 19
+- TypeScript
+- Vite
+- Vitest (测试框架)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 项目结构
+
+src/
+├── components/       # React 组件
+├── utils/            # 工具函数，包含解析器
+├── types/            # TypeScript 类型定义
+└── test/             # 测试文件
+
+## 开发
+
+### 安装依赖
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 启动开发服务器
+```bash
+npm run dev
+ ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 运行测试
+```bash
+npm test
+ ```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 实现原理
+这个项目从零开始实现了一个 Markdown 解析器，主要包含以下部分：
+
+1. 词法分析 ：将 Markdown 文本解析为标记流
+2. 语法分析 ：将标记流转换为抽象语法树 (AST)
+3. HTML 渲染 ：将 AST 渲染为 HTML
+4. React 组件 ：使用 React 组件展示渲染结果
